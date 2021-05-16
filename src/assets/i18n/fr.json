@@ -84,6 +84,7 @@
       "ProceedMsg": "Etes-vous sûr de vouloir continuer?",
       "Confirmation": "Confirmation",
       "ErrorMsg": "Something went wrong, Please try again",
-      "LogoutMsg": "Vous avez été déconnecté avec succès"
+      "LogoutMsg": "Vous avez été déconnecté avec succès",
+      "PleaseLoginMsg": "Veuillez vous connecter avant d'ajouter l'article au panier"
     }
 }

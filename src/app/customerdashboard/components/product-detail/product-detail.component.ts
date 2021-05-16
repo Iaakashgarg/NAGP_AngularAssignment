@@ -19,8 +19,8 @@ export class ProductDetailComponent implements OnInit {
   items: Product[];
   product: Product;
   userCart: UserCart;
-  quantity: number[] = [1,2,3,4,5]
-  sizes: string[] = ['Small','Medium','Large'];
+  quantity: number[] = [1, 2, 3, 4, 5]
+  sizes: string[] = ['Small', 'Medium', 'Large'];
   chosenSize: string;
   selectedQty: number = 1;
   userId: number = 0;
@@ -33,22 +33,33 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.product = data.product;
-     })
-     this.userId = this.userService.getCurrentUserId();
+    })
+    this.userId = this.userService.getCurrentUserId();
+    console.log(this.userId);
   }
 
   addToCart(product: Product, selectedQty: number, size: string) {
-    this.cartService.addItemToCart(product,selectedQty,size, this.userId).subscribe(() => {
-      this.toastService.info(this.translate.instant('HOME.AddedToCart'));
-    }, () => {
-      this.toastService.error(this.translate.instant('HOME.ErrorMsg'));  // something went wrong error message
-    });
-    
+    if (this.userId !== undefined && this.userId !== null && this.userId > 0) {
+      this.cartService.addItemToCart(product, selectedQty, size, this.userId).subscribe(() => {
+        this.toastService.info(this.translate.instant('HOME.AddedToCart'));
+      }, () => {
+        this.toastService.error(this.translate.instant('HOME.ErrorMsg'));  // something went wrong error message
+      });
+    } else {
+      this.toastService.info(this.translate.instant('HOME.PleaseLoginMsg'));
+      this.router.navigate([AppConstants.LoginPath]);
+    }
+
   }
 
 
   goToCheckout(product: Product, selectedQty: number, size: string) {
-    this.cartService.addItemToCart(product, selectedQty, size, this.userId);
-    this.router.navigateByUrl(AppConstants.CheckoutPath);
+    if (this.userId !== undefined && this.userId !== null && this.userId > 0) {
+      this.cartService.addItemToCart(product, selectedQty, size, this.userId);
+      this.router.navigateByUrl(AppConstants.CheckoutPath);
+    } else {
+      this.toastService.info(this.translate.instant('HOME.PleaseLoginMsg'));
+      this.router.navigate([AppConstants.LoginPath]);
+    }
   }
 }

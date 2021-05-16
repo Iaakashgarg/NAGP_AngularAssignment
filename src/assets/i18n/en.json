@@ -84,6 +84,7 @@
       "ProceedMsg": "Are you sure that you want to proceed?",
       "Confirmation": "Confirmation",
       "ErrorMsg": "Something went wrong, Please try again",
-      "LogoutMsg": "You have been logged out successfully"
+      "LogoutMsg": "You have been logged out successfully",
+      "PleaseLoginMsg": "Please Login before adding item to Cart"
     }
 }

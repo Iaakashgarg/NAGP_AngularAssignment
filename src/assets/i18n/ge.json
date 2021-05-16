@@ -84,6 +84,7 @@
       "ProceedMsg": "Sind Sie sicher, dass Sie fortfahren möchten?",
       "Confirmation": "Bestätigung",
       "ErrorMsg": "Something went wrong, Please try again",
-      "LogoutMsg": "Sie wurden erfolgreich abgemeldet"
+      "LogoutMsg": "Sie wurden erfolgreich abgemeldet",
+      "PleaseLoginMsg": "Bitte melden Sie sich an, bevor Sie einen Artikel in den Warenkorb legen"
     }
 }
