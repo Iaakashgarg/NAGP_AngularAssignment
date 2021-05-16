@@ -35,7 +35,6 @@ export class ProductDetailComponent implements OnInit {
       this.product = data.product;
     })
     this.userId = this.userService.getCurrentUserId();
-    console.log(this.userId);
   }
 
   addToCart(product: Product, selectedQty: number, size: string) {
