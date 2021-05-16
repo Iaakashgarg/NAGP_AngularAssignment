@@ -1,0 +1,94 @@
+<ng-template #EmptyCart>
+    <div class="paddingTopLeft">
+        <h2>{{'HOME.EmptyCartMsg' | translate}}</h2>
+        <p>{{'HOME.ClickBelowMsg' | translate}}</p>
+        <a routerLink="/home">{{'HOME.ContinueShopping' | translate}}</a>
+    </div>
+</ng-template>
+<div class="container margin-top5 marginBt4">
+    <div class="breadcrumb-cont">
+        <ul class="breadcrumb">
+            <li><a routerLink="/home">{{'HOME.Home' | translate}}</a></li>
+            <li><a routerLink="/home/product-category">{{'HOME.ProductByCategory' | translate | uppercase}}</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="row col-sm-16">
+                            <div class="col-sm-4 d-flex justify-content-start"><strong>{{'HOME.MyCart' |
+                                    translate}}</strong></div>
+                            <div *ngIf="userAddress !== undefined && userAddress !== null && userAddress !== '' " class="col-sm-8 d-flex justify-content-end">{{'HOME.DeliverTo' | translate}}:
+                                &nbsp;<strong>{{userAddress}}</strong></div>
+                        </div>
+                    </div>
+                    <div *ngIf="items != null && items.length > 0; else EmptyCart">
+                        <div *ngFor="let item of items">
+                            <div class="itemsMainDiv">
+                                <img [src]="item.image" class="figure-img img-fluid rounded itemImg" [alt]="item.name"
+                                    (click)="goToProductDetail(item.id)">
+                                <div class="itemsDiv">
+                                    <div>{{item.name}}</div>
+                                    <div class="itemSize">{{'HOME.Size' | translate}}: {{item.size}}</div>
+                                    <span class="itemPrice">{{item.price | currency : 'INR'}}</span>
+                                </div>
+                            </div>
+                            <div class="padding10">
+                                <div class="divQuant">
+                                    <div class="Quantity">
+                                        <label class="lblQuant">{{'HOME.Quantity' | translate}}</label>
+                                        <select [(ngModel)]="item.quantity" class="form-select QuantDropdown"
+                                            aria-label="Default select example"
+                                            (change)="changeItemQuantity(item.id,item.size,$event.target.value)">
+                                            <option *ngFor="let qty of quantity" value={{qty}}>{{qty}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="divRemove">
+                                    <a class="btnRemove" (click)="removeItem(item)">{{'HOME.Remove' | translate}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <button class="btn btn-primary btnCheckout" (click)="checkout()">{{'HOME.Checkout' |
+                            translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" *ngIf="items != null && items.length > 0">
+                <div class="card-body">
+                    <div class="priceDtl">
+                        <h5 class="card-title">{{'HOME.PriceDetails' | translate}}</h5>
+                        <span>{{'HOME.Items' | translate}}: {{priceDetails.totalItems}}</span>
+                    </div>
+                    <hr>
+                    <div class="padding24">
+                        <div class="justify">
+                            <div>{{'HOME.Price' | translate}}</div>
+                            <span>{{priceDetails.subTotal | currency : 'INR'}}</span>
+                        </div>
+                        <div class="justify">
+                            <div>{{'HOME.Discount' | translate}}</div>
+                            <span class="clrGrn">-{{priceDetails.discount | currency : 'INR'}}</span>
+                        </div>
+                        <div class="justify">
+                            <div>{{'HOME.DeliveryCharge' | translate}}</div>
+                            <span class="clrGrn">{{priceDetails.shippingHandling | currency : 'INR'}}</span>
+                        </div>
+                        <div class="justify">
+                            <div>{{'HOME.Taxes' | translate}}</div>
+                            <span>{{priceDetails.taxes | currency : 'INR'}}</span>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="justify">
+                        <div><strong>{{'HOME.TotalAmount' | translate}}</strong> </div>
+                        <span><strong> {{ priceDetails.total | currency : 'INR' }}</strong> </span>
+                    </div>
+                </div>
+            </div>
+        </div>

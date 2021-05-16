@@ -1,0 +1,70 @@
+<div class="container margin-top5 marginBt4">
+    <div class="breadcrumb-cont">
+        <ul class="breadcrumb">
+            <li><a routerLink="/home">{{'HOME.Home' | translate}}</a></li>
+            <li><a routerLink="/home/product-category">{{'HOME.ProductByCategory' | translate | uppercase}}</a></li>
+        </ul>
+    </div>
+    <div class="card" *ngIf="product">
+        <h2 class="d-flex justify-content-center"></h2>
+        <div class="row">
+            <div class="col-6 text-center">
+                <figure class="figure">
+                    <img [src]="product.image" class="figure-img img-fluid rounded" alt="...">
+                    <figcaption class="figure-caption">{{product.name}} by {{product.brand}}</figcaption>
+                </figure>
+            </div>
+            <div class="col-6">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text pi pi-tag product-category-icon"> {{product.category}}</p>
+                    <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                    <p class="card-text margin-top75">{{product.price | currency : 'INR'}}</p>
+                    <p class="card-text">{{product.description}}</p>
+                    <div class="card-text">
+                        <span class="clrCoral"><strong>{{'HOME.Brand' | translate}}: </strong></span>
+                        <span>{{product.brand}}</span>
+                    </div>
+                    <div class="card-text margin-top75">
+                        <span class="clrDarkBlue"><strong>{{'HOME.ProductCode' | translate}}: </strong></span>
+                        <span>{{product.code}}</span>
+                    </div>
+                    <hr>
+                    <div class="table-responsive mb-2">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td class="pl-0 pb-0 w-25">{{'HOME.Quantity' | translate}}</td>
+                                    <td class="pb-0">{{'HOME.SelectSize' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-0 pb-0 w-25">
+                                        <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedQty">
+                                            <option *ngFor="let qty of quantity" [value]="qty">{{qty}}</option>
+
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-check-inline" *ngFor="let size of sizes">
+                                            <input class="form-check-input" type="radio" name="size"
+                                                id="size" [value]="size" [(ngModel)]="chosenSize">
+                                            <label class="form-check-label" for="size">{{size}}</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn-primary btn-md mr-1 mb-2"
+                            [disabled]="product.quantity == 0 || chosenSize == undefined" (click)="goToCheckout(product, selectedQty, chosenSize)">{{'HOME.BuyNow' | translate}}</button>
+                        &nbsp; &nbsp;
+                        <button class="btn btn-light btn-md mr-1 mb-2" [disabled]="product.quantity == 0 || chosenSize == undefined"
+                            (click)="addToCart(product, selectedQty, chosenSize)"><i class="pi pi-shopping-cart"></i>&nbsp; 
+                            {{'HOME.AddToCart' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

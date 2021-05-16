@@ -1,0 +1,176 @@
+<ng-template #EmptyCart>
+    <div class="paddingTopLeft">
+        <h2>{{'HOME.EmptyCartMsg' | translate}}</h2>
+        <p>{{'HOME.ClickBelowMsg' | translate}}</p>
+        <a routerLink="/home">{{'HOME.ContinueShopping' | translate}}</a>
+    </div>
+</ng-template>
+
+<div class="container margin-top5 margin-bottom65">
+    <div class="breadcrumb-cont">
+        <ul class="breadcrumb">
+            <li><a routerLink="/home">{{'HOME.Home' | translate}}</a></li>
+            <li><a routerLink="/home/cart">{{'HOME.Cart' | translate | uppercase}}</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="row col-sm-16">
+                            <div class="col-sm-4 d-flex justify-content-start"><strong>{{'HOME.Checkout' |
+                                    translate}}</strong></div>
+                        </div>
+                    </div>
+                    <div *ngIf="!emptyCart; else EmptyCart">
+                        <div class="row col-sm-16 padAll"><strong>{{'HOME.ShipTo' | translate}}</strong></div>
+                        <div class="col-md-12">
+                            <form class="row g-3" [formGroup]="checkoutForm">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">{{'HOME.FirstName' | translate}}<i
+                                            class="error">*</i></label>
+                                    <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                                    <div *ngIf="form.firstName.touched && form.firstName.invalid"
+                                        class="error margin-bt7">
+                                        <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                        <span *ngIf="form.firstName.errors.required">{{'HOME.FirstNameErrMsg' |
+                                            translate}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">{{'HOME.LastName' | translate}}</label>
+                                    <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                                </div>
+                                <div class="row col-12 pdRt0" formGroupName="address">
+                                    <div class="col-12 pdRt0">
+                                        <label for="inputAddress" class="form-label">{{'HOME.Address' | translate}}<i
+                                                class="error">*</i></label>
+                                        <input type="text" class="form-control" id="inputAddress"
+                                            placeholder="1234 Main St" formControlName="address1">
+                                        <div *ngIf="address.address1.touched && address.address1.invalid"
+                                            class="error margin-bt7">
+                                            <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                            <span *ngIf="address.address1.errors.required">{{'HOME.AddressErrMsg' |
+                                                translate}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 pdRt0">
+                                        <label for="inputAddress2" class="form-label">{{'HOME.LandmarkStreet' |
+                                            translate}}<i class="error">*</i></label>
+                                        <input type="text" class="form-control" id="inputAddress2"
+                                            placeholder="Apartment, studio, or floor" formControlName="street">
+                                        <div *ngIf="address.street.touched && address.street.invalid"
+                                            class="error margin-bt7">
+                                            <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                            <span *ngIf="address.street.errors.required">{{'HOME.StreetErrMsg' |
+                                                translate}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label for="inputCity" class="form-label">{{'HOME.TownCity' | translate}}<i
+                                                class="error">*</i></label>
+                                        <input type="text" class="form-control" id="inputCity" formControlName="city">
+                                        <div *ngIf="address.city.touched && address.city.invalid"
+                                            class="error margin-bt7">
+                                            <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                            <span *ngIf="address.city.errors.required">{{'HOME.CityErrMsg' |
+                                                translate}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="inputState" class="form-label">{{'HOME.State' | translate}}<i
+                                                class="error">*</i></label>
+                                        <select id="inputState" class="form-control" aria-label="Default select example"
+                                            formControlName="state">
+                                            <option *ngFor="let state of statesList" [value]=state>{{state}}</option>
+                                        </select>
+                                        <div *ngIf="address.state.touched && address.state.invalid"
+                                            class="error margin-bt7">
+                                            <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                            <span *ngIf="address.state.errors.required">{{'HOME.StateErrMsg' |
+                                                translate}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 pdRt0">
+                                        <label for="inputZip" class="form-label">{{'HOME.Zip' | translate}}<i
+                                                class="error">*</i></label>
+                                        <input type="number" class="form-control" id="inputZip" formControlName="zip">
+                                        <div *ngIf="address.zip.touched && address.zip.invalid"
+                                            class="error margin-bt7">
+                                            <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                            <span *ngIf="address.zip.errors.required">{{'HOME.ZipErrMsg' |
+                                                translate}}</span>
+                                            <span *ngIf="address.zip.errors.pattern">{{'HOME.InvalidZip' |
+                                                translate}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="phoneNumber" class="form-label">{{'HOME.PhoneNumber' | translate}}<i
+                                            class="error">*</i></label>
+                                    <input type="text" class="form-control" id="phoneNumber"
+                                        formControlName="phoneNumber">
+                                    <div *ngIf="form.phoneNumber.touched && form.phoneNumber.invalid" class="error">
+                                        <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                        <span *ngIf="form.phoneNumber.errors.required">{{'HOME.PhoneErrMsg' |
+                                            translate}}</span>
+                                        <span *ngIf="form.phoneNumber.errors.pattern">{{'HOME.InvalidContact' |
+                                            translate}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <label for="email" class="form-label">{{'HOME.Email' | translate}}<i
+                                            class="error">*</i></label>
+                                    <input type="email" class="form-control" id="email" formControlName="email">
+                                    <div *ngIf="form.email.touched && form.email.invalid" class="error">
+                                        <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                        <span *ngIf="form.email.errors.required">{{'HOME.EmailErrMsg' |
+                                            translate}}</span>
+                                        <span *ngIf="form.email.errors.email">{{'HOME.InvalidEmail' | translate}}</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <hr>
+                        <p-confirmDialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
+                            [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+                        <button type="submit" class="btn btn-primary btnCheckout" [disabled]="!checkoutForm.valid"
+                            (click)="placeOrder()">{{'HOME.PlaceOrder' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" *ngIf="!emptyCart">
+                <div class="card-body">
+                    <h5 class="card-title">{{'HOME.OrderSummary' | translate}}</h5>
+                    <hr>
+                    <div class="padding24">
+                        <div class="justify">
+                            <div><b>{{'HOME.SubTotal' | translate}}</b>&nbsp;<i
+                                    class="pi pi-question-circle clrOr sizeSm"></i></div>
+                            <span>{{orderSummary.subTotal | currency : 'INR'}}</span>
+                        </div>
+                        <div class="justify">
+                            <div><b>{{'HOME.Shipping&Handling' | translate}}</b></div>
+                            <span class="clrOr">{{orderSummary.shippingHandling | currency : 'INR'}}</span>
+                        </div>
+                        <div class="justify">
+                            <div><b>{{'HOME.Taxes' | translate}}</b>&nbsp;<i
+                                    class="pi pi-question-circle clrOr sizeSm"></i></div>
+                            <span class="clrOr">{{orderSummary.taxes | currency : 'INR'}}</span>
+                        </div>
+                        <div class="justify">
+                            <div><b>{{'HOME.Discount' | translate}}</b></div>
+                            <span class="clrGrn">-{{orderSummary.discount | currency : 'INR'}}</span>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="justify size17">
+                        <div><strong>{{'HOME.Total' | translate}}</strong> </div>
+                        <span><strong>{{orderSummary.total | currency : 'INR'}}</strong> </span>
+                    </div>
+                </div>
+            </div>
+        </div>

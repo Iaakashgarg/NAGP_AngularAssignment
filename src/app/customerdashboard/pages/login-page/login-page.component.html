@@ -1,0 +1,56 @@
+<div class="container margin-top5">
+    <div class="breadcrumb-cont">
+        <ul class="breadcrumb">
+            <li><a routerLink="/home">{{'HOME.Home' | translate}}</a></li>
+            <li><a routerLink="/home/product-category">{{'HOME.ProductByCategory' | translate | uppercase}}</a></li>
+        </ul>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-3">
+            <div class="card">
+                <div class="card-body loginCard height375">
+                    <h5 class="card-title clrWhite">{{'HOME.Login' | translate}}</h5>
+                    <p class="card-text clrAtn">{{'HOME.LoginMessage' | translate}}</p>
+                    <div class="d-flex justify-content-center imgLgn">
+                        <img src="assets/images/cartIcon.png" class="figure-img img-fluid rounded itemImg" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-lg-6">
+            <div class="card">
+                <div class="card-body height375">
+                    <form [formGroup]="loginForm">
+                        <div class="col-12">
+                            <label for="inputEmail" class="form-label">{{'HOME.Email' | translate}}<i
+                                    class="error">*</i></label>
+                            <input type="email" class="form-control" id="inputEmail" formControlName="email">
+                            <div *ngIf="form.email.touched && form.email.invalid" class="error">
+                                <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                <span *ngIf="form.email.errors.required">{{'HOME.EmailErrMsg' | translate}}</span>
+                                <span *ngIf="form.email.errors.email">{{'HOME.InvalidEmail' | translate}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 marginTop2">
+                            <label for="inputPassword" class="form-label">{{'HOME.Password' | translate}}<i
+                                    class="error">*</i></label>
+                            <input type="password" class="form-control" id="inputPassword" formControlName="password">
+                            <div *ngIf="form.password.touched && form.password.invalid" class="error">
+                                <i class="pi pi-exclamation-circle">&nbsp;</i>
+                                <span *ngIf="form.password.errors.required">{{'HOME.PasswordErrMsg' | translate}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label labelTerms marginBtm1">{{'HOME.ConditionsMessage' |
+                                translate}}</label>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary form-control"
+                                (click)="login()">{{'HOME.Login' | translate}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

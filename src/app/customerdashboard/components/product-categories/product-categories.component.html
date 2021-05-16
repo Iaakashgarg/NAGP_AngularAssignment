@@ -1,0 +1,54 @@
+<div class="container margin-top5 marginBt4">
+    <div class="breadcrumb-cont">
+        <ul class="breadcrumb">
+            <li><a routerLink="/home">{{'HOME.Home' | translate}}</a></li>
+        </ul>
+    </div>
+    <p-organizationChart [value]="data" selectionMode="single" [(selection)]="selectedNode"
+        (onNodeSelect)="onNodeSelect($event)" styleClass="company">
+        <ng-template let-node pTemplate="person">
+            <div [pTooltip]="categoryToolTip" class="node-header p-corner-top">{{node.label}}</div>
+            <div class="node-content">
+                <div>{{node.data.name}}</div>
+            </div>
+        </ng-template>
+        <ng-template let-node pTemplate="department">
+            {{node.label}}
+        </ng-template>
+    </p-organizationChart>
+
+
+    <p-dataView #dv [value]="products" filterBy="name,description,category" filterPlaceholder="Filter by name">
+        <ng-template pTemplate="header">
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between topFlex">
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0 wd100">
+                    <i class="pi pi-search"></i>
+                    <input class="wd100" type="search" pInputText [placeholder]="searchPlaceHolder"
+                        (input)="dv.filter($event.target.value)">
+                </span>
+
+            </div>
+        </ng-template>
+
+        <ng-template let-product pTemplate="listItem">
+            <div class="p-col-12">
+                <div class="product-list-item" (click)="goToProductDetail(product.id)">
+                    <img class="img-fluid" [src]="product.image" [alt]="product.name" />
+
+                    <div class="product-list-detail">
+                        <div class="product-name">{{product.name}}</div>
+                        <div class="product-description">{{product.description}}</div>
+                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                        <i class="pi pi-tag product-category-icon"></i><span
+                            class="product-category">{{product.category}}</span>
+                    </div>
+                    <div class="product-list-action">
+                        <span class="product-price">{{product.price | currency: 'INR'}}</span>
+                        <span
+                            [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>

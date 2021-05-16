@@ -1,0 +1,43 @@
+<ng-template #btnLogin>
+    <button class="btn btn-light btn-sm br-0" routerLink="/login">{{'HOME.Login' | translate}}</button>&nbsp;&nbsp;
+</ng-template>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-light main-header">
+    <div class="container-fluid">
+      <div>
+        <a class="navbar-brand clrWhite" href="#">
+            <img src="assets/images/cartIcon.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            E-Mart</a>
+          </div>
+      <button (click)="toggleNavbarCollapsing()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse jst nv1" id="navbarTogglerDemo01" [class.collapse]="navbarCollapsed">
+       
+        <div class="d-flex justify-content-end divEnd">
+            <div *ngIf="isLoggedIn; else btnLogin">
+                <span class="clrWhite mr-3 mt-1">{{'HOME.Hello' | translate: param}}</span>
+             
+                <button class="btn btn-light btn-sm br-0" (click)="navigateToCart()"><i
+                        class="pi pi-shopping-cart"></i>&nbsp;{{'HOME.Cart' | translate}}</button>
+                &nbsp; &nbsp; 
+                 <button class="btn btn-light btn-sm br-0" (click)="logout()">{{'HOME.Logout' | translate}}</button>&nbsp;&nbsp;
+            </div>
+            <a class="globe-section on-mouse" id="icon" toggle="false" data-toggle="dropdown" aria-expanded="false"
+                auto-close="outsideClick"><i class="pi pi-globe" aria-hidden="true"></i>&nbsp; {{selected}}</a>
+            <div class="dropdown div12">
+                <form class="dropdown-menu m-0 alignCt" uib-dropdown-menu="" id="globe-ul">
+                    <li class="dropdown-header ng-binding pt-0" id="Language"><strong>{{'HOME.Language' | translate}}</strong></li>
+                    <hr class="m-0">
+                    <li role="separator" class="divider"></li>
+                    <li *ngFor="let language of languageList"  class="ng-binding lang"  let index
+                            (click)="[setSelected(language.Language),translate.use(language.Code)]"
+                            [ngClass]="{selected : language.Language === selected}">
+                                {{language.Language}} - {{language.Code | uppercase}}
+                        </li>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+</nav>

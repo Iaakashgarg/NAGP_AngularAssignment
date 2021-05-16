@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+// body {
+//     padding: 2em;
+//     font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+//   }
+
+.error {
+  color: #e0695c !important;
+}
+
+.margin-top5 {
+    margin-top: 5rem !important;
+}
+
+.margin-bt7 {
+  margin-bottom: 7px;
+}
+
+.margin-top2 {
+margin-top: 2rem !important;
+}
+
+.marginBt4 {
+  margin-bottom: 4rem !important;
+}
+
+.clrWhite {
+    color: white !important;
+}
+
+.wd100 {
+  width: 100% !important;
+}
+
+.clrCoral {
+  color: coral !important;
+}
+
+.clrDarkBlue {
+  color: darkslateblue !important;
+}
+
+.p-toast-top-right {
+  right: 20px !important;
+  top: 70px !important;
+}
+
+.toast-top-right {
+  right: 20px !important;
+  top: 70px !important;
+}
+
+.paddingTopLeft {
+  padding: .75rem 1.25rem;
+}
+
+input[disabled]:hover  {
+  cursor: not-allowed;
+}
+select[disabled]:hover  {
+  cursor: not-allowed;
+}
+span[disabled]:hover  {
+  cursor: not-allowed;
+}
+
+button[disabled]:hover {
+  cursor: not-allowed;
+}
+
+.breadcrumb-cont {
+    ul.breadcrumb {
+      padding: 10px 0;
+      list-style: none;
+      background: none;
+      li {
+        display: inline;
+        font-size: 12px;
+        color: #2c89c3;
+        a {
+          color: #62b3e5;
+          text-decoration: none;
+          &:hover {
+            color: #2c89c3;
+            text-decoration: underline;
+          }
+        }
+      }
+      li + li:before {
+        padding: 8px;
+        color: black;
+        content: "/\00a0";
+      }
+    }
+  }
+
+
+  

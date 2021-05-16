@@ -1,0 +1,140 @@
+.padding24 {
+    padding: 0 24px;
+    text-transform: uppercase;
+}
+
+.justify {
+    justify-content: space-between;
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+    font-family: Roboto,Arial,sans-serif;
+    letter-spacing: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.size17 {
+    font-size: 17px;
+    margin-bottom: auto;
+}
+
+.btnCheckout {
+    float: right;
+}
+
+.btnRemove {
+    display: inline-block;
+    text-transform: uppercase;
+    box-shadow: none;
+    outline: 0;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 25px;
+}
+
+.divQuant {
+    width: var(--cart-item-image-width);
+    text-align: center;
+    display: inline-block;
+}   
+
+
+.Quantity {
+    display: flex;
+}
+
+.padding10 {
+    padding-top: 10px;
+    padding: .75rem 1.25rem;
+}
+
+
+.divRemove {
+    display: inline-block;
+    padding-left: 24px;
+}
+
+.lblQuant{
+    padding-right: 16px;
+}
+
+.QuantDropdown{
+    height: 25px;
+}
+
+.itemsDiv {
+    padding: 0 24px 12px;
+    vertical-align: top;
+    min-height: 112px;
+    -webkit-flex: 1 1;
+    -ms-flex: 1 1;
+    flex: 1 1;
+    overflow: hidden;
+    max-width: 460px;
+}
+
+.itemImg {
+    width: 112px;
+    height: 112px;;
+}
+
+.itemsMainDiv {
+    padding-top: 15px;
+    display: flex;
+    padding: .75rem 1.25rem;
+}
+
+.itemSize {
+    color: #878787;
+    font-size: 14px;
+    height: 20px;
+}
+.itemPrice {
+    font-size: 18px;
+    font-weight: 500;
+    color: #212121;
+    display: inline-block;
+    margin-right: 8px;
+    margin-top: 18px;
+}
+
+.clrOr {
+    color: orangered;
+}
+
+.clrGrn {
+    color: #388e3c;
+}
+
+.pdRt0 {
+    padding-right: 0px !important; 
+}
+
+.sizeSm {
+    font-size: smaller;
+}
+
+.steps {
+    display: flex !important;
+    flex-wrap: wrap im !important;
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+}
+
+.padAll {
+    padding: 10px 0px 15px 24px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.margin-bottom65 {
+    margin-bottom: 65px;
+}
+
+:host ::ng-deep button {
+    margin-right: .25em;
+}
